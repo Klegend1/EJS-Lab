@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= restaurant.name %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1em 0;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+    .menu-item {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Welcome to <%= restaurant.name %></h1>
+    <p><strong>Address:</strong> <%= restaurant.address %></p>
+    <p><strong>Phone:</strong> <%= restaurant.phone %></p>
+    
+    <div class="status-message">
+        <% if (restaurant.isOpen) { %>
+          <p>Yes, We Are Open!</p>
+        <% } else { %>
+          <p>Sorry, We Are Closed.</p>
+        <% } %>
+      </div>
+
+    <h2>Menu</h2>
+    <% restaurant.menu.forEach(item => { %>
+      <div class="menu-item">
+        <h3><%= item.name %></h3>
+        <p><strong>Price:</strong> $<%= item.price.toFixed(2) %></p>
+        <p><strong>Rating:</strong> <%= item.rating %> stars</p>
+        <p><strong>Category:</strong> <%= item.category %></p>
+        <p><strong>Details:</strong> <%= item.details %></p>
+      </div>
+    <% }) %>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+  </footer>
+  <%- include('./partials/nav') %>
+
+</body>
+</html>
